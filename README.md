@@ -53,6 +53,9 @@ node build/index.js path_to_the_csv_file
 
 Replace `path_to_the_csv_file` with the actual path to your CSV file (e.g., `C:\\folder\\other_folder\\mcp-testing\issues.csv`).
 
+Estimated costs:
+- csv qith 330 lines => avarege 38k tokens/question  $0.12/question
+
 ### Configuration
 
 Edit the `.env` file to set API keys and other configuration options.
