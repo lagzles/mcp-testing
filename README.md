@@ -8,6 +8,10 @@ This application is a Node.js-based chatbot that interacts with users using data
 - Easily configurable via environment variables in the `.env` file.
 - Integrates with external APIs (e.g., OpenAI, Anthropic, NWS).
 
+### Other features
+- index-weather: Claude tool that add's a weather request on the Claude chat
+- index-analyse-csv: script that analyses the csv and gives the user a report about them
+
 ## Getting Started
 
 ### Prerequisites
