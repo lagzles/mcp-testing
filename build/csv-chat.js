@@ -40,7 +40,6 @@ export class CSVIssueChat {
             output: process.stdout
         });
         console.log('\n=== Construction Issue Chat ===');
-        console.log(`Loaded ${this.issues.length} issues`);
         console.log('Ask Claude about any issue (type "quit" to exit)\n');
         const askQuestion = async () => {
             rl.question('You: ', async (question) => {

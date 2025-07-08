@@ -14,6 +14,13 @@ This application is a Node.js-based chatbot that interacts with users using data
 
 ## Getting Started
 
+### Customization
+To create other schemas to use, you can:
+1 - follow 'construction-issue.ts'. Create a interface and a zObject for schema
+2 - Create a new Chat and adjust the CSVIssueChat.loadCSV method for it (csv-chat.ts)
+3 - Update your generateContext to your new object schema
+4 - Enjoy your conversation with Claude
+
 ### Prerequisites
 
 - Node.js (v16 or higher recommended)
@@ -44,8 +51,9 @@ Run the chatbot by providing the path to your CSV file:
 node build/index.js path_to_the_csv_file
 ```
 
-Replace `path_to_the_csv_file` with the actual path to your CSV file (e.g., `data/issues.csv`).
+Replace `path_to_the_csv_file` with the actual path to your CSV file (e.g., `C:\\folder\\other_folder\\mcp-testing\issues.csv`).
 
 ### Configuration
 
 Edit the `.env` file to set API keys and other configuration options.
+ANTHROPIC_API_KEY (go to https://console.anthropic.com/settings/keys) and MCP_VERSION=1.0

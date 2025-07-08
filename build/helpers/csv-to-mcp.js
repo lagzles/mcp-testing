@@ -41,7 +41,6 @@ export async function generateArrayFromCSV(csvPath, schema) {
             .pipe(csv())
             .on('data', (data) => {
             try {
-                // console.log('Raw CSV Row:', data);
                 const parsed = schema.parse(data);
                 results.push(parsed);
             }
@@ -50,7 +49,7 @@ export async function generateArrayFromCSV(csvPath, schema) {
             }
         })
             .on('end', () => {
-            console.log(`Generated array from CSV: ${results.length} records`);
+            console.log(`Generated array from CSV: ${results.length} records\n`);
             resolve(results);
         })
             .on('error', (err) => {
@@ -58,28 +57,6 @@ export async function generateArrayFromCSV(csvPath, schema) {
             reject(err);
         });
     });
-    // fs.createReadStream(csvPath)
-    // .pipe(csv()) 
-    // .on('data', (data) => {
-    //   try {
-    //     const parsed = schema.parse(data);
-    //     console.log(`Parsed record: ${JSON.stringify(parsed)}`);
-    //     results.push(parsed);
-    //   } catch (err) {
-    //     console.warn(`Skipping invalid record: ${err}`);
-    //     return null;
-    //   }
-    // })
-    // .on('end', () => {
-    //   // Resolve with the parsed array
-    //   return results;
-    // })
-    // .on('error', (err) => {
-    //   console.error(`Error reading CSV file: ${err}`);
-    //   throw err;
-    // });
-    // console.log(`Generated array from CSV: ${results.length} records`);
-    // return results;
 }
 export function createMCPPayloads(issues) {
     return issues.map(issue => ({

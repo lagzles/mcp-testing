@@ -7,14 +7,12 @@ async function main() {
     const chat = new CSVIssueChat();
     try {
         await chat.loadCSV(process.argv[2]);
-        console.log(`Loaded ${chat.issues.length} issues from CSV`);
         let issues_with_no_description = chat.issues.filter(issue => !issue.text);
         if (issues_with_no_description.length > 0) {
             console.log('There are issues with no description. Please check the CSV file.');
             console.log('Issues with no description:', issues_with_no_description.length);
             console.log('You can add descriptions to these issues in the CSV file and try again.');
         }
-        console.log('Starting chat...');
         await chat.chatAboutIssues();
     }
     catch (err) {
