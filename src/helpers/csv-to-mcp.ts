@@ -37,6 +37,32 @@ export async function parseCSVToMCP(csvPath: string): Promise<any[]> {
   });
 }
 
+
+export async function generateArrayFromCSV<T>(csvPath: string, schema: z.ZodSchema): Promise<T[]> {
+  
+  return new Promise<T[]>((resolve, reject) => {
+    let results: T[] = [];
+    fs.createReadStream(csvPath)
+      .pipe(csv())
+      .on('data', (data) => {
+        try {
+          const parsed = schema.parse(data);
+          results.push(parsed as T);
+        } catch (err) {
+          console.warn(`Skipping invalid record: ${err}`);
+        }
+      })
+      .on('end', () => {
+        console.log(`Generated array from CSV: ${results.length} records\n`);
+        resolve(results);
+      })
+      .on('error', (err) => {
+        console.error(`Error reading CSV file: ${err}`);
+        reject(err);
+      });
+  })
+}
+
 export function createMCPPayloads(issues: any[]) {
   return issues.map(issue => ({
     mcp_version: config.MCP_VERSION,

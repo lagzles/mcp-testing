@@ -34,7 +34,7 @@ interface ForecastResponse {
 }
 
 export {
-  AlertFeature,
+    AlertFeature,
     ForecastPeriod,
     AlertsResponse,
     PointsResponse,

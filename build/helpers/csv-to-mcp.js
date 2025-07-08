@@ -34,6 +34,53 @@ export async function parseCSVToMCP(csvPath) {
             .on('error', reject);
     });
 }
+export async function generateArrayFromCSV(csvPath, schema) {
+    return new Promise((resolve, reject) => {
+        let results = [];
+        fs.createReadStream(csvPath)
+            .pipe(csv())
+            .on('data', (data) => {
+            try {
+                // console.log('Raw CSV Row:', data);
+                const parsed = schema.parse(data);
+                results.push(parsed);
+            }
+            catch (err) {
+                console.warn(`Skipping invalid record: ${err}`);
+            }
+        })
+            .on('end', () => {
+            console.log(`Generated array from CSV: ${results.length} records`);
+            resolve(results);
+        })
+            .on('error', (err) => {
+            console.error(`Error reading CSV file: ${err}`);
+            reject(err);
+        });
+    });
+    // fs.createReadStream(csvPath)
+    // .pipe(csv()) 
+    // .on('data', (data) => {
+    //   try {
+    //     const parsed = schema.parse(data);
+    //     console.log(`Parsed record: ${JSON.stringify(parsed)}`);
+    //     results.push(parsed);
+    //   } catch (err) {
+    //     console.warn(`Skipping invalid record: ${err}`);
+    //     return null;
+    //   }
+    // })
+    // .on('end', () => {
+    //   // Resolve with the parsed array
+    //   return results;
+    // })
+    // .on('error', (err) => {
+    //   console.error(`Error reading CSV file: ${err}`);
+    //   throw err;
+    // });
+    // console.log(`Generated array from CSV: ${results.length} records`);
+    // return results;
+}
 export function createMCPPayloads(issues) {
     return issues.map(issue => ({
         mcp_version: config.MCP_VERSION,
