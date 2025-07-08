@@ -16,10 +16,10 @@ This application is a Node.js-based chatbot that interacts with users using data
 
 ### Customization
 To create other schemas to use, you can:
-1 - follow 'construction-issue.ts'. Create a interface and a zObject for schema
-2 - Create a new Chat and adjust the CSVIssueChat.loadCSV method for it (csv-chat.ts)
-3 - Update your generateContext to your new object schema
-4 - Enjoy your conversation with Claude
+- follow 'construction-issue.ts'. Create a interface and a zObject for schema
+- Create a new Chat and adjust the CSVIssueChat.loadCSV method for it (csv-chat.ts)
+- Update your generateContext to your new object schema
+- Enjoy your conversation with Claude
 
 ### Prerequisites
 
